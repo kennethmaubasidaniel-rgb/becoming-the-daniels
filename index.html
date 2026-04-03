@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith & Kenneth | #BecomingTheDaniels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #722F37;
+            --secondary: #2D5A27;
+            --bg-light: #F9F7F2;
+            --text-main: #2D2D2D;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .glass-nav {
+            background: rgba(249, 247, 242, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(114, 47, 55, 0.05);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .input-minimal {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #D1D1D1;
+            border-radius: 0;
+            padding: 0.75rem 0;
+            transition: all 0.3s;
+        }
+
+        .input-minimal:focus {
+            outline: none;
+            border-bottom-color: var(--accent);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.4s;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .btn-aso {
+            background-color: white;
+            color: var(--text-main);
+            padding: 1rem 2rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.4s;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-aso:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .aso-card {
+            background: white;
+            border: 1px solid rgba(114, 47, 55, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .aso-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(114, 47, 55, 0.08);
+            border-color: var(--accent);
+        }
+
+        .loading-spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid #fff;
+            width: 14px;
+            height: 14px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .contact-card {
+            background: white;
+            border: 1px solid rgba(114, 47, 55, 0.1);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 240px;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(114, 47, 55, 0.08);
+            border-color: var(--accent);
+        }
+
+        .wishlist-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-zoom {
+            animation: slowZoom 20s infinite alternate linear;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .map-link:hover {
+            border-bottom-color: var(--accent);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="cursive text-3xl text-[#722F37]">F & K</a>
+            
+            <div class="hidden md:flex items-center text-[9px] uppercase tracking-[0.2em] font-bold opacity-70">
+                <a href="#story" class="hover:text-[#722F37] transition">Our Story</a>
+                <span class="mx-4 text-gray-300">|</span>
+                <a href="#details" class="hover:text-[#722F37] transition">Details</a>
+                <span class="mx-4 text-gray-300">|</span>
+                <a href="#asoebi" class="hover:text-[#722F37] transition">Aso Ebi</a>
+                <span class="mx-4 text-gray-300">|</span>
+                <a href="#rsvp" class="hover:text-[#722F37] transition">RSVP</a>
+                <span class="mx-4 text-gray-300">|</span>
+                <a href="#registry" class="hover:text-[#722F37] transition">Registry</a>
+                <span class="mx-4 text-gray-300">|</span>
+                <a href="#contact" class="hover:text-[#722F37] transition">Contact</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-[#722F37]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M4 16h16"/></svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-[#F9F7F2] border-b border-gray-100 py-4 overflow-x-auto">
+            <div class="flex items-center justify-start space-x-8 px-6 min-w-max">
+                <a href="#story" class="mobile-link text-[9px] uppercase tracking-widest font-bold whitespace-nowrap">Our Story</a>
+                <a href="#details" class="mobile-link text-[9px] uppercase tracking-widest font-bold whitespace-nowrap">Details</a>
+                <a href="#asoebi" class="mobile-link text-[9px] uppercase tracking-widest font-bold whitespace-nowrap">Aso Ebi</a>
+                <a href="#rsvp" class="mobile-link text-[9px] uppercase tracking-widest font-bold whitespace-nowrap">RSVP</a>
+                <a href="#registry" class="mobile-link text-[9px] uppercase tracking-widest font-bold whitespace-nowrap">Registry</a>
+                <a href="#contact" class="mobile-link text-[9px] uppercase tracking-widest font-bold whitespace-nowrap">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover hero-zoom" alt="Wedding Hero">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <!-- Pushed content down with more padding-top (pt-48) -->
+        <div class="relative z-10 text-center text-white px-4 pt-48 md:pt-64">
+            <p class="text-[10px] md:text-xs uppercase tracking-[0.6em] mb-10 md:mb-12 opacity-90 font-bold">We're getting married</p>
+            <h1 class="text-5xl md:text-9xl font-light mb-8 serif">Faith <span class="italic">&</span> Kenneth</h1>
+            <div class="flex items-center justify-center space-x-6 mb-12">
+                <div class="h-[1px] w-8 md:w-16 bg-white/30"></div>
+                <p class="text-xs md:text-sm tracking-[0.4em] uppercase font-light">June 27, 2026</p>
+                <div class="h-[1px] w-8 md:w-16 bg-white/30"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-10">
+                <a href="#rsvp" class="btn-primary min-w-[220px]">Reserve Your Spot</a>
+                <a href="#asoebi" class="btn-aso min-w-[220px]">Get Your Aso Ebi</a>
+            </div>
+            
+            <p class="block cursive text-2xl md:text-4xl text-rose-100 opacity-90 mb-4">#BecomingTheDaniels</p>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <h2 class="text-4xl md:text-5xl serif text-[#722F37] mb-8 italic">Welcome</h2>
+            <p class="text-gray-600 font-light leading-relaxed text-lg md:text-xl">
+                We are so excited to celebrate our special day with the people we love most. Your presence in our lives has been a blessing, and we can't wait to share this new beginning with you.
+            </p>
+            <div class="mt-10 h-px w-20 bg-[#722F37]/20 mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section id="story" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200" class="shadow-2xl w-full rounded-sm" alt="The Couple">
+            </div>
+            <div class="reveal">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-4 block font-bold">Our Story</span>
+                <h2 class="text-5xl serif text-[#722F37] mb-8 italic">The Journey</h2>
+                <div class="space-y-6 text-gray-600 font-light leading-relaxed text-lg mb-6">
+                    <p>I was just trying to message a friend on WhatsApp… but somehow, I texted the wrong person. Or so I thought. 😄</p>
+                    <p>What I didn’t know was that you had switched your display picture, and that “mistake” turned into a conversation I never wanted to end. Turns out, it wasn’t a wrong message at all; it was the right one, sent at the perfect time, to the person I was meant to find. ❤️</p>
+                    <p>Every step brought us closer, every moment shaped our story, and now, we can’t wait to begin this next chapter together as one.</p>
+                </div>
+                <p class="text-gray-600 font-light leading-relaxed text-lg italic">#BecomingTheDaniels</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details -->
+    <section id="details" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-5xl serif text-[#722F37] mb-4 italic">The Occasion</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="p-12 text-center border border-gray-100 reveal">
+                    <h3 class="text-[10px] uppercase tracking-[0.3em] text-[#2D5A27] font-bold mb-6">Solemnization</h3>
+                    <p class="text-4xl serif mb-4 italic text-[#722F37]">10:00 AM</p>
+                    <p class="text-gray-500 font-light">Miracles Ministries<br>Olu Oshifeso St, Iwaya, Lagos</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Miracles+Ministries+Olu+Oshifeso+St+Iwaya+Lagos" target="_blank" class="map-link">
+                        <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        View on Map
+                    </a>
+                </div>
+                <div class="p-12 text-center border border-gray-100 reveal">
+                    <h3 class="text-[10px] uppercase tracking-[0.3em] text-[#722F37] font-bold mb-6">Reception</h3>
+                    <p class="text-4xl serif mb-4 italic text-[#2D5A27]">01:00 PM</p>
+                    <p class="text-gray-500 font-light">Canopy Hall, MFM International HQ<br>13, Olasimbo Street, Onike, Yaba</p>
+                    <a href="https://maps.app.goo.gl/ZEHnAXqx2Rk3fs8b7" target="_blank" class="map-link">
+                        <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        View on Map
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-24 text-center reveal">
+                <h3 class="text-[10px] uppercase tracking-[0.4em] text-gray-400 font-bold mb-8">Colors of the Day</h3>
+                <div class="flex justify-center items-center gap-8">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full shadow-lg mb-3" style="background-color: #722F37;"></div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-gray-500">Wine</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full shadow-lg mb-3" style="background-color: #2D5A27;"></div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-gray-500">Green</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aso Ebi Section -->
+    <section id="asoebi" class="py-32 bg-[#F2F2F2] px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-4 block font-bold">Dress Code</span>
+                <h2 class="text-5xl serif text-[#722F37] mb-6 italic">Get Your Aso Ebi</h2>
+                <p class="text-gray-600 font-light text-lg mb-2">Celebrate with us in style!</p>
+                <p class="text-gray-500 font-light italic">Kindly select your preferred Aso Ebi option below to be part of our special day.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="aso-card p-8 rounded-sm reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="serif text-2xl text-[#722F37]">Ladies' Package</h3>
+                        <span class="text-[#2D5A27] font-bold">₦35,000</span>
+                    </div>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">Complete Set</p>
+                    <p class="text-gray-600 font-light text-sm mb-8">Includes: Aso Ebi fabric + Gele</p>
+                    <a href="https://wa.me/2348107661118?text=Hello%20Opeyemi,%20I%20would%20like%20to%20order%20the%20Ladies'%20Package%20(N35,000)" target="_blank" class="block text-center py-3 border border-[#722F37] text-[#722F37] hover:bg-[#722F37] hover:text-white transition uppercase text-[9px] tracking-widest font-bold">Order Now</a>
+                </div>
+
+                <div class="aso-card p-8 rounded-sm reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="serif text-2xl text-[#722F37]">Men’s Package</h3>
+                        <span class="text-[#2D5A27] font-bold">₦25,000</span>
+                    </div>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">Traditional</p>
+                    <p class="text-gray-600 font-light text-sm mb-8">Includes: Aso Ebi fabric + Cap</p>
+                    <a href="https://wa.me/2348162749018?text=Hello%20Emmanuel,%20I%20would%20like%20to%20order%20the%20Men's%20Package%20(N25,000)" target="_blank" class="block text-center py-3 border border-[#722F37] text-[#722F37] hover:bg-[#722F37] hover:text-white transition uppercase text-[9px] tracking-widest font-bold">Order Now</a>
+                </div>
+
+                <div class="aso-card p-8 rounded-sm reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="serif text-2xl text-[#722F37]">Men’s Full Agbada</h3>
+                        <span class="text-[#2D5A27] font-bold">₦35,000</span>
+                    </div>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">Luxury Set</p>
+                    <p class="text-gray-600 font-light text-sm mb-8">Includes: Full Agbada material + Cap</p>
+                    <a href="https://wa.me/2348162749018?text=Hello%20Emmanuel,%20I%20would%20like%20to%20order%20the%20Full%20Agbada%20Package%20(N35,000)" target="_blank" class="block text-center py-3 border border-[#722F37] text-[#722F37] hover:bg-[#722F37] hover:text-white transition uppercase text-[9px] tracking-widest font-bold">Order Now</a>
+                </div>
+
+                <div class="aso-card p-8 rounded-sm reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="serif text-2xl text-[#722F37]">Gele Only</h3>
+                        <span class="text-[#2D5A27] font-bold">₦8,000</span>
+                    </div>
+                    <p class="text-gray-600 font-light text-sm mb-8">Premium Headtie Fabric</p>
+                    <a href="https://wa.me/2348107661118?text=Hello%20Opeyemi,%20I%20would%20like%20to%20order%20the%20Gele%20Only%20(N8,000)" target="_blank" class="block text-center py-3 border border-[#722F37] text-[#722F37] hover:bg-[#722F37] hover:text-white transition uppercase text-[9px] tracking-widest font-bold">Order Now</a>
+                </div>
+
+                <div class="aso-card p-8 rounded-sm reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="serif text-2xl text-[#722F37]">Cap Only</h3>
+                        <span class="text-[#2D5A27] font-bold">₦4,000</span>
+                    </div>
+                    <p class="text-gray-600 font-light text-sm mb-8">Traditional Men's Cap (Fila)</p>
+                    <a href="https://wa.me/2348162749018?text=Hello%20Emmanuel,%20I%20would%20like%20to%20order%20the%20Cap%20Only%20(N4,000)" target="_blank" class="block text-center py-3 border border-[#722F37] text-[#722F37] hover:bg-[#722F37] hover:text-white transition uppercase text-[9px] tracking-widest font-bold">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registry -->
+    <section id="registry" class="py-32 px-6 bg-[#2D5A27] text-white">
+        <div class="max-w-6xl mx-auto reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl serif mb-4 italic">Gift Registry</h2>
+                <p class="text-rose-100 font-light tracking-widest uppercase text-[10px]">Your presence is our greatest gift, but should you wish to honor us further...</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-white/5 border border-white/10 p-10 rounded-sm">
+                    <h3 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-10 opacity-60">Monetary</h3>
+                    <div class="space-y-6">
+                        <div><span class="text-[8px] uppercase tracking-[0.2em] opacity-40 block">Bank</span><p class="text-xl">Ecobank</p></div>
+                        <div><span class="text-[8px] uppercase tracking-[0.2em] opacity-40 block">Name</span><p class="text-xl">Kenneth Daniel</p></div>
+                        <div><span class="text-[8px] uppercase tracking-[0.2em] opacity-40 block">Account</span><p class="text-4xl font-light text-rose-100">2461224314</p></div>
+                        <button onclick="copyAccount()" class="w-full mt-4 py-3 border border-white/20 hover:bg-white hover:text-[#2D5A27] transition uppercase text-[9px] tracking-widest font-bold">Copy Details</button>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 p-10 rounded-sm">
+                    <h3 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-10 opacity-60">Wishlist</h3>
+                    <div class="grid grid-cols-3 gap-2 text-center text-[10px] uppercase tracking-tighter md:tracking-widest">
+                        <div class="wishlist-item">Air Fryer</div>
+                        <div class="wishlist-item">Microwave</div>
+                        <div class="wishlist-item">Blender</div>
+                        <div class="wishlist-item">Washing Machine</div>
+                        <div class="wishlist-item">Water Dispenser</div>
+                        <div class="wishlist-item">Ceramic Pot</div>
+                        <div class="wishlist-item">Dinner Set</div>
+                        <div class="wishlist-item">Car</div>
+                        <div class="wishlist-item">Refrigerator</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="py-32 px-6 bg-[#F9F7F2]">
+        <div class="max-w-xl mx-auto">
+            <div id="rsvp-container">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-5xl serif text-[#722F37] mb-6 italic">R.S.V.P</h2>
+                    <p class="text-gray-500 font-light italic">Kindly respond as soon as possible to secure your electronic invitation.</p>
+                </div>
+
+                <form id="rsvp-form" class="space-y-8 reveal">
+                    <div>
+                        <label class="text-[8px] uppercase tracking-[0.3em] font-bold text-gray-400 block mb-2">Guest Name</label>
+                        <input type="text" name="name" id="guest-name" required class="w-full input-minimal text-lg font-light">
+                    </div>
+                    <div>
+                        <label class="text-[8px] uppercase tracking-[0.3em] font-bold text-gray-400 block mb-2">Phone Number</label>
+                        <input type="tel" name="phone" id="guest-phone" required class="w-full input-minimal text-lg font-light">
+                    </div>
+                    <div class="flex space-x-12">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="attendance" value="Accepts" checked class="hidden peer">
+                            <div class="w-4 h-4 border-2 border-gray-200 peer-checked:bg-[#722F37] transition mr-3"></div>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Accepts</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="attendance" value="Declines" class="hidden peer">
+                            <div class="w-4 h-4 border-2 border-gray-200 peer-checked:bg-[#722F37] transition mr-3"></div>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Declines</span>
+                        </label>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full btn-primary shadow-xl">Confirm Attendance</button>
+                </form>
+            </div>
+
+            <div id="rsvp-success" class="hidden text-center py-20 bg-white border border-rose-50 shadow-sm reveal active">
+                <p class="cursive text-6xl text-[#722F37] mb-8">Thank You</p>
+                <p class="text-gray-600 font-light text-lg">We have received the response for <br><span id="saved-name" class="font-bold text-[#2D5A27] text-2xl"></span>.</p>
+                <div class="mt-10 h-px w-20 bg-[#722F37]/20 mx-auto"></div>
+            </div>
+
+            <div id="contact" class="mt-32 pt-16 border-t border-gray-200 text-center reveal">
+                <p class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-10 font-bold">Need Assistance? Click to chat with us</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <a href="https://wa.me/2348162749018?text=Hi%20Emmanuel,%20I'm%20inquiring%20about%20Faith%20and%20Kenneth's%20wedding." target="_blank" class="contact-card group">
+                        <div class="mb-2">
+                            <svg class="w-6 h-6 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </div>
+                        <p class="serif italic text-2xl text-[#722F37]">Emmanuel</p>
+                        <p class="text-[10px] tracking-widest text-gray-400">0816 274 9018</p>
+                    </a>
+                    <a href="https://wa.me/2348107661118?text=Hi%20Opeyemi,%20I'm%20inquiring%20about%20Faith%20and%20Kenneth's%20wedding." target="_blank" class="contact-card group">
+                        <div class="mb-2">
+                            <svg class="w-6 h-6 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </div>
+                        <p class="serif italic text-2xl text-[#722F37]">Opeyemi</p>
+                        <p class="text-[10px] tracking-widest text-gray-400">0810 766 1118</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center">
+        <p class="cursive text-3xl text-[#722F37] mb-2">F & K</p>
+        <p class="text-[8px] uppercase tracking-[0.4em] text-gray-400">June 27, 2026 • #BecomingTheDaniels</p>
+    </footer>
+
+    <script>
+        const rsvpForm = document.getElementById('rsvp-form');
+        const rsvpContainer = document.getElementById('rsvp-container');
+        const successDiv = document.getElementById('rsvp-success');
+        const submitBtn = document.getElementById('submit-btn');
+        const savedNameSpan = document.getElementById('saved-name');
+
+        window.onload = () => {
+            const hasRSVPed = localStorage.getItem('weddingRSVP_Daniels2026');
+            if (hasRSVPed) {
+                rsvpContainer.classList.add('hidden');
+                successDiv.classList.remove('hidden');
+                savedNameSpan.textContent = hasRSVPed;
+            }
+            
+            document.querySelectorAll('.reveal').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('active');
+            });
+        };
+
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const data = new FormData(rsvpForm);
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+
+            try {
+                const response = await fetch("https://formspree.io/f/mojpdlnn", {
+                    method: "POST",
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    localStorage.setItem('weddingRSVP_Daniels2026', name);
+                    rsvpContainer.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                    savedNameSpan.textContent = name;
+                    successDiv.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                alert("Something went wrong. Please try again or contact us directly.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Confirm Attendance";
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.onclick = (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+        };
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(l => {
+            l.onclick = () => mobileMenu.classList.add('hidden');
+        });
+
+        window.copyAccount = () => {
+            const temp = document.createElement('textarea');
+            temp.value = "Ecobank | Kenneth Daniel | 2461224314";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert("Bank details copied to clipboard!");
+        };
+    </script>
+</body>
+</html>
