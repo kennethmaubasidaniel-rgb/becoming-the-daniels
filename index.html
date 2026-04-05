@@ -521,7 +521,9 @@ const response = await fetch("https://sheetdb.io/api/v1/a40nq1i4simjh", {
     headers: {
         "Content-Type": "application/json"
     },
-    body: JSON.stringify({ data })
+    body: JSON.stringify({
+    data: [data]
+})
 });
 
                 if (response.ok) {
