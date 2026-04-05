@@ -511,9 +511,10 @@
 
             try {
                 const data = {
-    name: document.getElementById('guest-name').value,
-    phone: document.getElementById('guest-phone').value,
-    attendance: document.querySelector('input[name="attendance"]:checked').value
+    "Timestamp": new Date().toLocaleString(),
+    "Name": document.getElementById('guest-name').value,
+    "Phone Number": document.getElementById('guest-phone').value,
+    "Attendance": document.querySelector('input[name="attendance"]:checked').value
 };
 
 const response = await fetch("https://sheetdb.io/api/v1/a40nq1i4simjh", {
