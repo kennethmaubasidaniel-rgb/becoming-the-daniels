@@ -505,17 +505,24 @@
         rsvpForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('guest-name').value;
-            const data = new FormData(rsvpForm);
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
 
             try {
-                const response = await fetch("https://formspree.io/f/mojpdlnn", {
-                    method: "POST",
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
+                const data = {
+    name: document.getElementById('guest-name').value,
+    phone: document.getElementById('guest-phone').value,
+    attendance: document.querySelector('input[name="attendance"]:checked').value
+};
+
+const response = await fetch("https://sheetdb.io/api/v1/a40nq1i4simjh", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ data })
+});
 
                 if (response.ok) {
                     localStorage.setItem('weddingRSVP_Daniels2026', name);
